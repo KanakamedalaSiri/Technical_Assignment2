@@ -27,7 +27,8 @@ using namespace std;
 //Method to Reverse a word	
 string EncodeDecode:: ReversingWord(string sWordInFile)
 {
-    iIndex1=0;
+    //iIndex1 and iIndex2 to iterate from starting to end of word
+	iIndex1=0;
 	iIndex2=sWordInFile.length()-1;
 	while(iIndex1<=iIndex2)
 	{
