@@ -1,3 +1,16 @@
+/*Purpose 	:For mapping of digit to letters of keypad
+	Language	:C++
+	Author  	: Sirisha Chowdary Bonthu
+	Date    	: 12/05/2020
+	
+CASE 4 :Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the
+number could represent.
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not
+map to any letters.
+Example:
+Input: "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]. */	
+
 #include"Pch.h"
 #include<iostream>
 #include<string.h>
