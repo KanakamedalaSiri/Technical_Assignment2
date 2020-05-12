@@ -75,8 +75,7 @@ string EncodeDecode:: GenerateFileName(string sfileName,string sToReplace,string
     
 }
 //Method to Encrypt and Decrypt key
-string EncodeDecode:: GetKey(string sKey) {
-    //char key = 'K'; //Any char will work
+string EncodeDecode:: GetKey(string sKey) { 
     string OutKey = sKey;
     
     for (int iIndex = 0; iIndex < sKey.size(); iIndex++)
