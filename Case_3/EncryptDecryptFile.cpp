@@ -28,7 +28,7 @@ string EncodeDecode:: ReversingWord(string sWordInFile)
 {
 	iStartPos=0;
 	iEndPos=sWordInFile.length()-1;
-	while(iIndex1<=iIndex2)
+	while(iStartPos<=iEndPos)
 	{
 	    sTemp[iStartPos]=sWordInFile[iStartPos];
 	    sWordInFile[iStartPos]=sWordInFile[iEndPos];
@@ -56,7 +56,7 @@ void EncodeDecode:: WriteEncodeFile(string sfileName,string sNewFile,string sKey
 	        myfile<<sWordInFile<<sAlphaNum;
 	        
 	    }
-	    iIndex2=0;
+	    iEndPos=0;
 	    cout<<endl;
 	    myfile<<endl;
 	    
@@ -114,7 +114,7 @@ void EncodeDecode:: DecodeFile(string sfileName,string sKey)
 	               myfile<<sWordInFile<<" ";
 	               
 	           }
-	           iIndex2=0;
+	           iEndPos=0;
 	           cout<<endl;
                myfile<<endl;
               
@@ -151,8 +151,8 @@ void EncodeDecode:: EncodeFile(string sfileName,string sKey)
 void EncodeDecode:: SecuredFile(char** cArgVar)
 {
     string sEncryptDecrypt=cArgVar[1];
-    string sfileName=cArgVar[2];
-    string sKey=cArgVar[4];
+    string sfileName=cArgVar[3];
+    string sKey=cArgVar[5];
     if(sEncryptDecrypt=="-e")
     EncodeFile(sfileName,sKey);
     else if(sEncryptDecrypt=="-d")
