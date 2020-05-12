@@ -1,10 +1,9 @@
-/*Purpose 	:For Calculating the sum of squares of a given Number
+/*Purpose 	:To Encrypt and Decrypt given sample files
 	Language	:C++
 	Author  	: Sirisha Chowdary Bonthu
 	Date    	: 8/05/2020
 	
-	
- CASE 3 :Given a sample text file as input, scan all the words in the text file and
+CASE 3 :Given a sample text file as input, scan all the words in the text file and
 a. Create a new file, which encodes all the word in the source file by reversing each word in text
 file and replacing all the spaces in between the words with an alpha numeric character.
 E.g : This is a sample text
@@ -27,16 +26,15 @@ using namespace std;
 //Method to Reverse a word	
 string EncodeDecode:: ReversingWord(string sWordInFile)
 {
-    //iIndex1 and iIndex2 to iterate from starting to end of word
-	iIndex1=0;
-	iIndex2=sWordInFile.length()-1;
+	iStartPos=0;
+	iEndPos=sWordInFile.length()-1;
 	while(iIndex1<=iIndex2)
 	{
-	    sTemp[iIndex1]=sWordInFile[iIndex1];
-	    sWordInFile[iIndex1]=sWordInFile[iIndex2];
-	    sWordInFile[iIndex2]=sTemp[iIndex1];
-	    iIndex1++;
-	    iIndex2--;
+	    sTemp[iStartPos]=sWordInFile[iStartPos];
+	    sWordInFile[iStartPos]=sWordInFile[iEndPos];
+	    sWordInFile[iEndPos]=sTemp[iStartPos];
+	    iStartPos++;
+	    iEndPos--;
 	    
 	}
 	return sWordInFile;
@@ -81,8 +79,8 @@ string EncodeDecode:: GetKey(string sKey) {
     //char key = 'K'; //Any char will work
     string OutKey = sKey;
     
-    for (iIndex1 = 0; iIndex1 < sKey.size(); iIndex1++)
-        OutKey[iIndex1] = sKey[iIndex1] ^ 'I';
+    for (int iIndex = 0; iIndex < sKey.size(); iIndex++)
+        OutKey[iIndex] = sKey[iIndex] ^ 'I';
     
     return OutKey;
 }
