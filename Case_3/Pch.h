@@ -14,8 +14,8 @@ class EncodeDecode
     string sToReplace;
     string sToUpdate;
     string sNewFile;
-    int iIndex1;
-    int iIndex2;
+    int iStartPos;
+    int iEndPos;
     
     public:
     ifstream file;
