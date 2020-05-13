@@ -73,7 +73,17 @@ int main(int argc,char* argv[])
         int iDigits[iNum]; 
         cout<<"Enter elements"<<endl;
         for(int iIndex=0;iIndex<iNum;iIndex++)
-        cin>>iDigits[iIndex];
+	{
+            cout<<"Enter element"<<iIndex+1<<endl;
+            cin>>iDigits[iIndex];
+            if(iDigits[iIndex]>=0&&iDigits[iIndex]<=9);
+            else
+            {
+                cout<<"Invalid Input.Enter -h for usage."<<endl;
+                return 0;
+                
+            }
+        }
         obj.letterCombinations(iDigits, iNum);
         }
         return 0; 
