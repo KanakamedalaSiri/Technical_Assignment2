@@ -7,7 +7,7 @@ CASE 3 :Given a sample text file as input, scan all the words in the text file a
 a. Create a new file, which encodes all the word in the source file by reversing each word in text
 file and replacing all the spaces in between the words with an alpha numeric character.
 E.g : This is a sample text
- Siht*si*a*elpmas*txet ? Encoded format
+ Siht*si*a*elpmas*txet  Encoded format
  
 b. Ask the user to enter a secret key before initiating the encoding sequence
 c. Provide the option to decode the file, upon the user’s choice and start the decoding only when
@@ -18,12 +18,27 @@ file format. */
 #include<iostream>
 #include<fstream>
 #include<sstream>
-#include<algorithm>
 #include<stdlib.h>
 #include<string.h>
 using namespace std;
 
-
+//Method to Reverse a word	
+string EncodeDecode:: ReversingWord(string sWordInFile)
+{
+	iStartPos=0;
+	iEndPos=sWordInFile.length()-1;
+	while(iStartPos<=iEndPos)
+	{
+	    sTemp[iStartPos]=sWordInFile[iStartPos];
+	    sWordInFile[iStartPos]=sWordInFile[iEndPos];
+	    sWordInFile[iEndPos]=sTemp[iStartPos];
+	    iStartPos++;
+	    iEndPos--;
+	    
+	}
+	return sWordInFile;
+    
+}
 //Method to write Encoded data to file
 void EncodeDecode:: WriteEncodeFile(string sfileName,string sNewFile,string sKey,string sAlphaNum)
 {
@@ -35,11 +50,12 @@ void EncodeDecode:: WriteEncodeFile(string sfileName,string sNewFile,string sKey
 	    istringstream iss(sLineInFile);
 	    while (iss>>sWordInFile)
 	    {
-	        reverse(sWordInFile.begin(),sWordInFile.end());
-	        cout<<sWordInFile<<sAlphaNum;
+	        sWordInFile=ReversingWord(sWordInFile);
+		    cout<<sWordInFile<<sAlphaNum;
 	        myfile<<sWordInFile<<sAlphaNum;
 	        
 	    }
+	    iEndPos=0;
 	    cout<<endl;
 	    myfile<<endl;
 	    
@@ -58,9 +74,9 @@ string EncodeDecode:: GenerateFileName(string sfileName,string sToReplace,string
     
 }
 //Method to Encrypt and Decrypt key
-string EncodeDecode:: GetKey(string sKey) 
-{
+string EncodeDecode:: GetKey(string sKey) { 
     string OutKey = sKey;
+    
     for (int iIndex = 0; iIndex < sKey.size(); iIndex++)
         OutKey[iIndex] = sKey[iIndex] ^ 'I';
     
@@ -89,13 +105,14 @@ void EncodeDecode:: DecodeFile(string sfileName,string sKey)
 			while(getline(file, sLineInFile))
 	       {
 	           istringstream iss(sLineInFile);
-	           while (getline(iss,sWordInFile,'$'))
+	           while (getline(iss,sWordInFile,'*'))
 	           {
-	               reverse(sWordInFile.begin(),sWordInFile.end());
+	               sWordInFile=ReversingWord(sWordInFile);
 	               cout<<sWordInFile<<" ";
 	               myfile<<sWordInFile<<" ";
 	               
 	           }
+	           iEndPos=0;
 	           cout<<endl;
                myfile<<endl;
               
@@ -145,11 +162,11 @@ void EncodeDecode:: SecuredFile(char** cArgVar)
 int main(int argc,char* argv[])
 {
     EncodeDecode obj;
-     if (argc==2 && argv[1]=="-h")
-		cout<<"Usage:"<<argv[0]<<"-d/-e(decrypt/encrypt) -f [Filename] -k [key]"<<endl;
+    if (argc==2 && strcmp(argv[1],"-h")==0)
+    cout<<"Usage:"<<argv[0]<<"-d/-e(decrypt/encrypt) -f [Filename] -k [key]"<<endl;
     else if(argc==6)
     obj.SecuredFile(argv);
-	else
-	cout<<"Invalid Input.Enter -h for program usage"<<endl;
-	return 0;
+    else
+    cout<<"Invalid Input.Enter -h for program usage"<<endl;
+    return 0;
 }
