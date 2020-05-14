@@ -14,6 +14,8 @@ class EncodeDecode
     string sToReplace;
     string sToUpdate;
     string sNewFile;
+    int iStartPos;
+    int iEndPos;
     
     public:
     ifstream file;
@@ -25,6 +27,7 @@ class EncodeDecode
     string GenerateFileName(string sfileName,string sToReplace,string sToUpdate);
     void WriteDecodeFile(string sLineInFile,string sNewFile);
     void WriteEncodeFile(string sfileName,string sNewFile,string sKey,string sAlphaNum);
+    string ReversingWord(string sWordInFile);
 };
     
 #endif 
