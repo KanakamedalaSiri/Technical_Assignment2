@@ -2,32 +2,29 @@
 #define PCH
 #include<iostream>
 #include<string.h>
-#include<fstream>
-using namespace std;
 
 class EncodeDecode
 {
     private:
-    string sWordInFile;
-    string sLineInFile;
-    string sTemp;
-    string sToReplace;
-    string sToUpdate;
-    string sNewFile;
+    std::string sWordInFile;
+    std::string sLineInFile;
+    std::string sTemp;
+    std::string sToReplace;
+    std::string sToUpdate;
+    std::string sNewFile;
     int iStartPos;
     int iEndPos;
+    bool EncodeFile(std::string sfileName,std::string sKey);
+    std::string GenerateFileName(std::string sfileName,std::string sToReplace,std::string sToUpdate);
+    std::string GetKey(std::string sKey);
+    bool WriteEncodeFile(std::string sfileName,std::string sNewFile,std::string sKey,std::string sAlphaNum);
+    bool DecodeFile(std::string sfileName,std::string sKey);
     
     public:
-    ifstream file;
-    ofstream myfile;
-    void SecuredFile(char** cArgVar);
-    void EncodeFile(string sfileName,string sKey);
-    void DecodeFile(string sfileName,string sKey);
-    string GetKey(string sKey);
-    string GenerateFileName(string sfileName,string sToReplace,string sToUpdate);
-    void WriteDecodeFile(string sLineInFile,string sNewFile);
-    void WriteEncodeFile(string sfileName,string sNewFile,string sKey,string sAlphaNum);
-    string ReversingWord(string sWordInFile);
+    EncodeDecode();
+    ~EncodeDecode();
+    bool SecuredFile(char** cArgVar);
+    
 };
     
 #endif 
