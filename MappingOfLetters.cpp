@@ -47,44 +47,15 @@ vector<string> MappingOfLetters::GenerateletterComb(int iDigits[],int iNum,strin
 } 
   
 // Function that creates the mapping and displays letter Combinations
-void MappingOfLetters::letterCombinations(int iDigits[], int iNum) 
+bool MappingOfLetters::letterCombinations(int iDigits[], int iNum) 
 { 
     // sKeyPad[i] stores all characters that corresponds to ith digit of phone 
-    string sKeyPad[10] = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" }; 
+    string sKeyPad[10] = { " ", " ", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" }; 
   
     vector<string> v = GenerateletterComb(iDigits, iNum, sKeyPad); 
   
     //Displays the contents of vector 
     for (auto word : v) 
         cout << word << " "; 
-    
-} 
-
-int main(int argc,char* argv[]) 
-{
-    if (argc==2 && strcmp(argv[1],"-h")==0)
-    cout<<"Usage:"<<argv[0]<<"Positive Integeres between 2-9"<<endl;
-    else
-    {
-        MappingOfLetters obj;
-        int iNum;
-        cout<<"Enter num of elements "<<endl;
-        cin>>iNum;
-        int iDigits[iNum]; 
-        cout<<"Enter elements"<<endl;
-        for(int iIndex=0;iIndex<iNum;iIndex++)
-	{
-            cout<<"Enter element"<<iIndex+1<<endl;
-            cin>>iDigits[iIndex];
-            if(iDigits[iIndex]>=0&&iDigits[iIndex]<=9);
-            else
-            {
-                cout<<"Invalid Input.Enter -h for usage."<<endl;
-                return 0;
-                
-            }
-        }
-        obj.letterCombinations(iDigits, iNum);
-        }
-        return 0; 
+return 1;    
 } 
