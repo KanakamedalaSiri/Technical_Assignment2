@@ -12,6 +12,8 @@ class MappingOfLetters
     std::vector<std::string> GenerateletterComb(int iDigits[],int iNum,std::string sKeyPad[]);
     
     public:
+    MappingOfLetters();
+    ~MappingOfLetters();
     bool letterCombinations(int iDigits[], int iNum);
     
 };
