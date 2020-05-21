@@ -18,6 +18,12 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]. */
 #include<queue>
 using namespace std; 
 
+//Default constructor
+MappingOfLetters::MappingOfLetters()
+{
+  string sQfirstelement="\0";
+  cout<<"Default constructor called"<<endl;  
+}
 // Function to return a vector that contains all generated letter combinations 
 vector<string> MappingOfLetters::GenerateletterComb(int iDigits[],int iNum,string sKeyPad[]) 
 { 
@@ -58,4 +64,10 @@ bool MappingOfLetters::letterCombinations(int iDigits[], int iNum)
     for (auto word : v) 
         cout << word << " "; 
 return 1;    
-} 
+}
+//Default destructor
+MappingOfLetters::~MappingOfLetters()
+{
+    cout<<"\nDefault Destructor called"<<endl;
+}
+
