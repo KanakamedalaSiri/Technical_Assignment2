@@ -18,40 +18,36 @@ file format. */
 #include<iostream>
 #include<fstream>
 #include<sstream>
-#include<stdlib.h>
+#include<algorithm>
 #include<string.h>
 using namespace std;
 
-//Method to Reverse a word	
-string EncodeDecode:: ReversingWord(string sWordInFile)
+//Default constructor
+EncodeDecode::EncodeDecode()
 {
-	iStartPos=0;
-	iEndPos=sWordInFile.length()-1;
-	while(iStartPos<=iEndPos)
-	{
-	    sTemp[iStartPos]=sWordInFile[iStartPos];
-	    sWordInFile[iStartPos]=sWordInFile[iEndPos];
-	    sWordInFile[iEndPos]=sTemp[iStartPos];
-	    iStartPos++;
-	    iEndPos--;
-	    
-	}
-	return sWordInFile;
-    
+    sWordInFile="\0";
+    sLineInFile="\0";
+    sTemp="\0";
+    sToReplace="\0";
+    sToUpdate="\0";
+    sNewFile="\0";
+    iStartPos=0;
+    iEndPos=0;
+    cout<<"Default constructor called"<<endl;
 }
+
 //Method to write Encoded data to file
-void EncodeDecode:: WriteEncodeFile(string sfileName,string sNewFile,string sKey,string sAlphaNum)
+bool EncodeDecode:: WriteEncodeFile(string sfileName,string sNewFile,string sKey,string sAlphaNum)
 {
-    file.open(sfileName);
-    myfile.open(sNewFile);
+    ifstream file(sfileName);
+    ofstream myfile(sNewFile);
     myfile<<"key="<<sKey<<endl;
 	while(getline(file, sLineInFile))
 	{
 	    istringstream iss(sLineInFile);
 	    while (iss>>sWordInFile)
 	    {
-	        sWordInFile=ReversingWord(sWordInFile);
-		    cout<<sWordInFile<<sAlphaNum;
+	        reverse(sWordInFile.begin(),sWordInFile.end());
 	        myfile<<sWordInFile<<sAlphaNum;
 	        
 	    }
@@ -62,7 +58,7 @@ void EncodeDecode:: WriteEncodeFile(string sfileName,string sNewFile,string sKey
 	}
 	file.close();
 	myfile.close();
-    
+    return 1;
 }
 //Method to Generate Newfile name
 string EncodeDecode:: GenerateFileName(string sfileName,string sToReplace,string sToUpdate)
@@ -84,7 +80,7 @@ string EncodeDecode:: GetKey(string sKey) {
 }
 
 //Method to Encrypt data and write to file
-void EncodeDecode:: DecodeFile(string sfileName,string sKey)
+bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 {
     ifstream file(sfileName);
     if(!file.is_open())
@@ -95,7 +91,7 @@ void EncodeDecode:: DecodeFile(string sfileName,string sKey)
         sToReplace="_encode.txt";
         sToUpdate="_decode.txt";
         sNewFile=GenerateFileName(sfileName,sToReplace,sToUpdate);
-        myfile.open(sNewFile);
+        ofstream myfile(sNewFile);
         while(getline(file,sLineInFile) )
         {
             size_t pos = sLineInFile.find("=");
@@ -107,8 +103,7 @@ void EncodeDecode:: DecodeFile(string sfileName,string sKey)
 	           istringstream iss(sLineInFile);
 	           while (getline(iss,sWordInFile,'*'))
 	           {
-	               sWordInFile=ReversingWord(sWordInFile);
-	               cout<<sWordInFile<<" ";
+	               reverse(sWordInFile.begin(),sWordInFile.end());
 	               myfile<<sWordInFile<<" ";
 	               
 	           }
@@ -121,13 +116,14 @@ void EncodeDecode:: DecodeFile(string sfileName,string sKey)
             cout<<"Invalid Password.Enter correct password to Decrypt file."<<endl;
             
         }
-        
+        myfile.close();   
     }
     file.close();
-    myfile.close();
+    
+    return 1;
 }
 //Method used to encode data
-void EncodeDecode:: EncodeFile(string sfileName,string sKey)
+bool EncodeDecode:: EncodeFile(string sfileName,string sKey)
 {
     ifstream file(sfileName);
     if(!file.is_open())
@@ -142,11 +138,12 @@ void EncodeDecode:: EncodeFile(string sfileName,string sKey)
         string sNewFile=GenerateFileName(sfileName,sToReplace,sToUpdate);
         sKey=GetKey(sKey);
         WriteEncodeFile(sfileName,sNewFile,sKey,sAlphaNum);
+        return 1;
         
     }
 }
 //Method to select Encrypt or Decrypt file	  
-void EncodeDecode:: SecuredFile(char** cArgVar)
+bool EncodeDecode:: SecuredFile(char** cArgVar)
 {
     string sEncryptDecrypt=cArgVar[1];
     string sfileName=cArgVar[3];
@@ -157,16 +154,10 @@ void EncodeDecode:: SecuredFile(char** cArgVar)
     DecodeFile(sfileName,sKey);
     else if(sEncryptDecrypt!="e"&& sEncryptDecrypt!="d")
     cout<<"Invalid Input.Enter -h for program usage"<<endl;
-}  
-
-int main(int argc,char* argv[])
+    return 1;
+}
+//Default destructor
+EncodeDecode::~EncodeDecode()
 {
-    EncodeDecode obj;
-    if (argc==2 && strcmp(argv[1],"-h")==0)
-    cout<<"Usage:"<<argv[0]<<"-d/-e(decrypt/encrypt) -f [Filename] -k [key]"<<endl;
-    else if(argc==6)
-    obj.SecuredFile(argv);
-    else
-    cout<<"Invalid Input.Enter -h for program usage"<<endl;
-    return 0;
+    cout<<"Default Destructor called"<<endl;
 }
