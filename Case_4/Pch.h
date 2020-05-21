@@ -3,18 +3,16 @@
 #include<iostream>
 #include<string.h>
 #include<vector>
-#include<queue>
-using namespace std;
+
 
 class MappingOfLetters
 {
     private:
-    string sQfirstelement;
-    
+    std::string sQfirstelement;
+    std::vector<std::string> GenerateletterComb(int iDigits[],int iNum,std::string sKeyPad[]);
     
     public:
-    vector<string> GenerateletterComb(int iDigits[],int iNum,string sKeyPad[]);
-    void letterCombinations(int iDigits[], int iNum);
+    bool letterCombinations(int iDigits[], int iNum);
     
 };
     
