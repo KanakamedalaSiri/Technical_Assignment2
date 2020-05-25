@@ -98,25 +98,24 @@ bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 			sKey=GetKey(sKey);
 			if(Keyinfile==sKey)
 			while(getline(file, sLineInFile))
-	       {
-	           istringstream iss(sLineInFile);
-	           while (getline(iss,sWordInFile,ch))
-	           {
-	               reverse(sWordInFile.begin(),sWordInFile.end());
-	               myfile<<sWordInFile<<" ";
-	               
-	           }
-		   myfile<<endl;
-              
-	        }
+			{
+			    istringstream iss(sLineInFile);
+			    while (getline(iss,sWordInFile,ch)
+			    {
+			        reverse(sWordInFile.begin(),sWordInFile.end());
+	                myfile<<sWordInFile<<" ";
+			        
+			    }
+			    myfile<<endl;
+			    
+			}
 			else
-            cout<<"Invalid Password.Enter correct password to Decrypt file."<<endl;
+	        cout<<"Invalid Password.Enter correct password to Decrypt file."<<endl;
             
         }
         myfile.close();   
     }
     file.close();
-    
     return 1;
 }
 //Method used to encode data
