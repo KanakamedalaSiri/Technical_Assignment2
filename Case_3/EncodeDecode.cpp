@@ -14,7 +14,7 @@ c. Provide the option to decode the file, upon the user’s choice and start the
 the secret key matches with the one obtained in the previous step to provide the original text
 file format. */	
 
-#include"Pch.h"
+#include"EncodeDecode.h"
 #include<iostream>
 #include<fstream>
 #include<sstream>
@@ -92,6 +92,9 @@ bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
         sToUpdate="_decode.txt";
         sNewFile=GenerateFileName(sfileName,sToReplace,sToUpdate);
         ofstream myfile(sNewFile);
+        char ch;
+        cout<<"Enter the same Alphanumeric character used for encoding"<<endl;
+        cin>>ch;
         while(getline(file,sLineInFile) )
         {
             size_t pos = sLineInFile.find("=");
@@ -101,7 +104,7 @@ bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 			while(getline(file, sLineInFile))
 	       {
 	           istringstream iss(sLineInFile);
-	           while (getline(iss,sWordInFile,'*'))
+	           while (getline(iss,sWordInFile,ch))
 	           {
 	               reverse(sWordInFile.begin(),sWordInFile.end());
 	               myfile<<sWordInFile<<" ";
@@ -124,7 +127,7 @@ bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 }
 //Method used to encode data
 bool EncodeDecode:: EncodeFile(string sfileName,string sKey)
-{
+{ 
     ifstream file(sfileName);
     if(!file.is_open())
     cout<<"Could not open file"<<endl;
@@ -142,20 +145,7 @@ bool EncodeDecode:: EncodeFile(string sfileName,string sKey)
         
     }
 }
-//Method to select Encrypt or Decrypt file	  
-bool EncodeDecode:: SecuredFile(char** cArgVar)
-{
-    string sEncryptDecrypt=cArgVar[1];
-    string sfileName=cArgVar[3];
-    string sKey=cArgVar[5];
-    if(sEncryptDecrypt=="-e")
-    EncodeFile(sfileName,sKey);
-    else if(sEncryptDecrypt=="-d")
-    DecodeFile(sfileName,sKey);
-    else if(sEncryptDecrypt!="e"&& sEncryptDecrypt!="d")
-    cout<<"Invalid Input.Enter -h for program usage"<<endl;
-    return 1;
-}
+
 //Default destructor
 EncodeDecode::~EncodeDecode()
 {
