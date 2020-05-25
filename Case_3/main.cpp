@@ -18,9 +18,15 @@ int main(int argc,char* argv[])
     string sfileName;
     string sKey;
     if(argc<=1)
-    cout<<argv[0]<<"Give -h for usage"<<endl;
+    {
+        cout<<argv[0]<<"Give -h for usage"<<endl;
+        return -1;
+    }
     if (argc>1 && strcmp(argv[1],"-h")==0)
-    cout<<"Usage:"<<argv[0]<<"-e/-d -f [Filename] -k [key]"<<endl;
+    {
+        cout<<"Usage:"<<argv[0]<<"-e/-d -f [Filename] -k [key]"<<endl;
+        return -1;
+    }
     int operation=getOperation(argv[1]);
     if(operation==-1)
     {
