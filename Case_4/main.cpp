@@ -1,10 +1,10 @@
 #include<iostream>
-#include"Pch.h"
+#include"MappingOfLetters.h"
 using namespace std;
 
 int main(int argc,char* argv[]) 
 {
-    if (argc==2 && strcmp(argv[1],"-h")==0)
+    if (argc>1 && strcmp(argv[1],"-h")==0)
     cout<<"Usage:"<<argv[0]<< "\tPositive Integeres between 2-9"<<endl;
     else
     {
