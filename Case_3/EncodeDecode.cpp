@@ -14,6 +14,22 @@ c. Provide the option to decode the file, upon the user’s choice and start the
 the secret key matches with the one obtained in the previous step to provide the original text
 file format. */	
 
+/*Purpose 	:To Encrypt and Decrypt given sample files
+	Language	:C++
+	Author  	: Sirisha Chowdary Bonthu
+	Date    	: 8/05/2020
+	
+CASE 3 :Given a sample text file as input, scan all the words in the text file and
+a. Create a new file, which encodes all the word in the source file by reversing each word in text
+file and replacing all the spaces in between the words with an alpha numeric character.
+E.g : This is a sample text
+ Siht*si*a*elpmas*txet  Encoded format
+ 
+b. Ask the user to enter a secret key before initiating the encoding sequence
+c. Provide the option to decode the file, upon the user’s choice and start the decoding only when
+the secret key matches with the one obtained in the previous step to provide the original text
+file format. */	
+
 #include"EncodeDecode.h"
 #include<iostream>
 #include<fstream>
@@ -27,7 +43,6 @@ EncodeDecode::EncodeDecode()
 {
     sWordInFile="\0";
     sLineInFile="\0";
-    sTemp="\0";
     sToReplace="\0";
     sToUpdate="\0";
     sNewFile="\0";
@@ -78,18 +93,17 @@ string EncodeDecode:: GetKey(string sKey)
 bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 {
     ifstream file(sfileName);
-    if(!file.is_open())
+    if(!file)
     cout<<"Could not open file"<<endl;
     else
-    if(file.is_open())
     {
         sToReplace="_encode.txt";
         sToUpdate="_decode.txt";
         sNewFile=GenerateFileName(sfileName,sToReplace,sToUpdate);
         ofstream myfile(sNewFile);
-        char ch;
+        char AlphaNum ;
         cout<<"Enter the same Alphanumeric character used for encoding"<<endl;
-        cin>>ch;
+        cin>>AlphaNum;
         while(getline(file,sLineInFile) )
         {
             size_t pos = sLineInFile.find("=");
@@ -99,7 +113,7 @@ bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 			while(getline(file, sLineInFile))
 			{
 			    istringstream iss(sLineInFile);
-			    while (getline(iss,sWordInFile,ch))
+			    while (getline(iss,sWordInFile,AlphaNum))
 			    {
 			        reverse(sWordInFile.begin(),sWordInFile.end());
 	                myfile<<sWordInFile<<" ";
@@ -121,9 +135,9 @@ bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 bool EncodeDecode:: EncodeFile(string sfileName,string sKey)
 { 
     ifstream file(sfileName);
-    if(!file.is_open())
+    if(!file)
     cout<<"Could not open file"<<endl;
-    else if(file.is_open())
+    else
     {
         sToReplace=".txt";
         sToUpdate="_encode.txt";
