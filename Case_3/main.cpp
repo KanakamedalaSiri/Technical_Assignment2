@@ -24,7 +24,7 @@ int main(int argc,char* argv[])
     }
     if (argc>1 && strcmp(argv[1],"-h")==0)
     {
-        cout<<"Usage:"<<argv[0]<<"-e/-d -f [Filename] -k [key]"<<endl;
+        cout<<"Usage:"<<argv[0]<<" -e/-d -f [Filename] -k [key]"<<endl;
         return -1;
     }
     int operation=getOperation(argv[1]);
