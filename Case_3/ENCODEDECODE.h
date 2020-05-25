@@ -1,5 +1,5 @@
-#ifndef PCH
-#define PCH
+#ifndef ENCODEDECODE
+#define ENCODEDECODE
 #include<iostream>
 #include<string.h>
 
