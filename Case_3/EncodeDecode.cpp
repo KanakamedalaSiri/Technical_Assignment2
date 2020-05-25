@@ -31,8 +31,6 @@ EncodeDecode::EncodeDecode()
     sToReplace="\0";
     sToUpdate="\0";
     sNewFile="\0";
-    iStartPos=0;
-    iEndPos=0;
     cout<<"Default constructor called"<<endl;
 }
 
@@ -51,8 +49,6 @@ bool EncodeDecode:: WriteEncodeFile(string sfileName,string sNewFile,string sKey
 	        myfile<<sWordInFile<<sAlphaNum;
 	        
 	    }
-	    iEndPos=0;
-	    cout<<endl;
 	    myfile<<endl;
 	    
 	}
@@ -110,9 +106,7 @@ bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 	               myfile<<sWordInFile<<" ";
 	               
 	           }
-	           iEndPos=0;
-	           cout<<endl;
-               myfile<<endl;
+		   myfile<<endl;
               
 	        }
 			else
