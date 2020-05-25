@@ -1,5 +1,5 @@
 #include<iostream>
-#include"Pch.h"
+#include"EncodeDecode.h"
 using namespace std;
 int getOperation(char* argv)
 {
