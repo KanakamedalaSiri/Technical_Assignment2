@@ -22,7 +22,7 @@ int main(int argc,char* argv[])
             else
             {
                 cout<<"Invalid Input.Enter -h for usage."<<endl;
-                return 0;
+                return -1;
                 
             }
         }
