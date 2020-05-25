@@ -1,5 +1,5 @@
-#ifndef PCH
-#define PCH
+#ifndef MAPPINGOFLETTERS
+#define MAPPINGOFLETTERS
 #include<iostream>
 #include<string.h>
 #include<vector>
