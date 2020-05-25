@@ -54,7 +54,7 @@ bool EncodeDecode:: WriteEncodeFile(string sfileName,string sNewFile,string sKey
 	}
 	file.close();
 	myfile.close();
-    return 1;
+	return 1;
 }
 //Method to Generate Newfile name
 string EncodeDecode:: GenerateFileName(string sfileName,string sToReplace,string sToUpdate)
@@ -66,12 +66,11 @@ string EncodeDecode:: GenerateFileName(string sfileName,string sToReplace,string
     
 }
 //Method to Encrypt and Decrypt key
-string EncodeDecode:: GetKey(string sKey) { 
+string EncodeDecode:: GetKey(string sKey) 
+{ 
     string OutKey = sKey;
-    
     for (int iIndex = 0; iIndex < sKey.size(); iIndex++)
-        OutKey[iIndex] = sKey[iIndex] ^ 'I';
-    
+    OutKey[iIndex] = sKey[iIndex] ^ 'I';
     return OutKey;
 }
 
@@ -100,7 +99,7 @@ bool EncodeDecode:: DecodeFile(string sfileName,string sKey)
 			while(getline(file, sLineInFile))
 			{
 			    istringstream iss(sLineInFile);
-			    while (getline(iss,sWordInFile,ch)
+			    while (getline(iss,sWordInFile,ch))
 			    {
 			        reverse(sWordInFile.begin(),sWordInFile.end());
 	                myfile<<sWordInFile<<" ";
