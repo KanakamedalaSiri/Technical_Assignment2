@@ -13,20 +13,14 @@ int getOperation(char* argv)
 }
 
 int main(int argc,char* argv[])
-
 {
     EncodeDecode obj;
     string sfileName;
     string sKey;
     if(argc<=1)
-    {
-        cout<<argv[0]<<"Give -h for usage"<<endl;
-    }
+    cout<<argv[0]<<"Give -h for usage"<<endl;
     if (argc>1 && strcmp(argv[1],"-h")==0)
-    {
     cout<<"Usage:"<<argv[0]<<"-e/-d -f [Filename] -k [key]"<<endl;
-    cout<<"-e : Encrypt\n -d Decrypt\n -f Inputfilename\n -k key"<<endl;
-    }
     int operation=getOperation(argv[1]);
     if(operation==-1)
     {
